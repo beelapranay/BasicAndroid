@@ -2,4 +2,7 @@
     <string name="app_name">Basic Android</string>
     
     <string name="toast_button_text">Button</string>
+
+    <string name="tts_button_text">Click me for TtS Conversion</string>
+    <string name="tts_hint">Enter Text</string>
 </resources>
