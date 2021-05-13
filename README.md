@@ -6,4 +6,5 @@ You can either fork the repo or just clone it using the commmand `git clone {url
 on the **Play Button** that can be found on your code editor.
 
 ## List of Contents in the Repo
-1. Short Toast and Long Toast `(xml and MainActivity.kt)`
+1. Short Toast and Long Toast `(button_toast.xml & MainActivity.kt)`
+2. Basic TTS conversion (Text to Speech) `(tts_layout.xml & MainActivity.kt)`
