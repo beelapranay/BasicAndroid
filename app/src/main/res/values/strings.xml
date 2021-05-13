@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Basic Android</string>
+    
+    <string name="toast_button_text">Button</string>
+</resources>
