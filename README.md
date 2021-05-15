@@ -8,3 +8,4 @@ on the **Play Button** that can be found on your code editor.
 ## List of Contents in the Repo
 1. Short Toast and Long Toast `(button_toast.xml & MainActivity.kt)`
 2. Basic TTS conversion (Text to Speech) `(tts_layout.xml & MainActivity.kt)`
+3. Basic Listview with Array Adapter `(listview.xml, listview_item.xml & MainActivity.kt)`
