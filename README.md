@@ -5,7 +5,8 @@ This is a repository that contains the basic stuff of Android and also some basi
 You can either fork the repo or just clone it using the commmand `git clone {url}` from your `git bash` or `cmd`. Now you can let the `gradle` build your project and then click
 on the **Play Button** that can be found on your code editor.
 
-## List of Contents in the Repo
+## List of contents in the Repo
 1. Short Toast and Long Toast `(button_toast.xml & MainActivity.kt)`
 2. Basic TTS conversion (Text to Speech) `(tts_layout.xml & MainActivity.kt)`
 3. Basic Listview with Array Adapter `(listview.xml, listview_item.xml & MainActivity.kt)`
+4. Alert Box `(alert.xml & MainActivity.kt)`
