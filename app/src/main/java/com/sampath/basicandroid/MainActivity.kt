@@ -4,34 +4,38 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.SeekBar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.button_toast.*
+import kotlinx.android.synthetic.main.listview.*
 import kotlinx.android.synthetic.main.tts_layout.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.button_toast)
+        setContentView(R.layout.button_toast)
         setContentView(R.layout.tts_layout)
+        setContentView(R.layout.listview)
 
         // Short and Long Toast
-//        val button = toast_button
-//        button.setOnClickListener{
-//            Toast.makeText(
-//                this@MainActivity,
-//                "Short Toast",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//            Toast.makeText(
-//                this@MainActivity,
-//                "This is a Long Toast",
-//                Toast.LENGTH_LONG
-//            ).show()
-//        }
+        val button = toast_button
+        button.setOnClickListener{
+            Toast.makeText(
+                this@MainActivity,
+                "Short Toast",
+                Toast.LENGTH_SHORT
+            ).show()
+            Toast.makeText(
+                this@MainActivity,
+                "This is a Long Toast",
+                Toast.LENGTH_LONG
+            ).show()
+        }
 
-        // Text to Speech Conversion
+        //Text to Speech Conversion
         var ttsText = tts_text
         var ttsButton = tts_button
         lateinit var tts : TextToSpeech
@@ -63,5 +67,16 @@ class MainActivity : AppCompatActivity() {
                  null
              );
          }
+
+        val array = arrayOf("United states", "Japan", "China", "Sri Lanka", "Russia", "Europe",
+            "Spain", "Swiss", "Denmark", "Australia", "London", "West Indies", "Iraq", "Kabul",
+            "Dubai", "Israel", "Nepal", "Iran")
+
+            val adapter = ArrayAdapter(this,
+                R.layout.listview_item, array)
+
+            val listView: ListView = listview
+            listView.setAdapter(adapter)
+
     }
 }
