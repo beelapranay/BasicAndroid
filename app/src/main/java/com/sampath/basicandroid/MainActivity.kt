@@ -1,19 +1,26 @@
 package com.sampath.basicandroid
 
+import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.webkit.WebView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.getSystemService
 import kotlinx.android.synthetic.main.alert.*
 import kotlinx.android.synthetic.main.button_toast.*
 import kotlinx.android.synthetic.main.listview.*
 import kotlinx.android.synthetic.main.tts_layout.*
+import kotlinx.android.synthetic.main.webview.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.button_toast)
         setContentView(R.layout.tts_layout)
         setContentView(R.layout.listview)
+        setContentView(R.layout.webview)
 
         // Short and Long Toast
         val button = toast_button
@@ -99,6 +107,18 @@ class MainActivity : AppCompatActivity() {
             val alert = dialogBuilder.create()
             alert.setTitle("Alert")
             alert.show()
+        }
+
+        // WebView
+        val submitButton = submitButton
+
+        submitButton.setOnClickListener {
+            val websiteName = websiteName.text.toString()
+
+            Intent(this@MainActivity, WebViewActivity::class.java).also {
+                it.putExtra("websiteName", websiteName)
+                startActivity(it)
+            }
         }
 
     }
