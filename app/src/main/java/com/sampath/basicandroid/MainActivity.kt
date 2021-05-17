@@ -1,24 +1,18 @@
 package com.sampath.basicandroid
 
-import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
-import android.webkit.WebView
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.SeekBar
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.getSystemService
 import kotlinx.android.synthetic.main.alert.*
 import kotlinx.android.synthetic.main.button_toast.*
 import kotlinx.android.synthetic.main.listview.*
+import kotlinx.android.synthetic.main.spinner.*
+import kotlinx.android.synthetic.main.toggle_button.*
 import kotlinx.android.synthetic.main.tts_layout.*
 import kotlinx.android.synthetic.main.webview.*
 import java.util.*
@@ -26,11 +20,14 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.alert)
+
         setContentView(R.layout.button_toast)
         setContentView(R.layout.tts_layout)
         setContentView(R.layout.listview)
+        setContentView(R.layout.alert)
         setContentView(R.layout.webview)
+        setContentView(R.layout.toggle_button)
+        setContentView(R.layout.spinner)
 
         // Short and Long Toast
         val button = toast_button
@@ -52,26 +49,23 @@ class MainActivity : AppCompatActivity() {
         var ttsButton = tts_button
         lateinit var tts : TextToSpeech
 
-         tts = TextToSpeech(
-            this@MainActivity,
-            TextToSpeech.OnInitListener {
-                if(it == TextToSpeech.SUCCESS){
-                    var result = tts.setLanguage(Locale.US)
+         tts = TextToSpeech(this@MainActivity) {
+             if (it == TextToSpeech.SUCCESS) {
+                 var result = tts.setLanguage(Locale.US)
 
-                    if(result == TextToSpeech.LANG_MISSING_DATA ||
-                        result == TextToSpeech.LANG_NOT_SUPPORTED){
-                        Log.e("TTS", "Language is not present")
-                    }
-                    else{
-                        ttsButton.isEnabled = true
-                    }
-                }
-                else{
-                    Log.e("TTS", "TTS Failed")
-                }
-            })
+                 if (result == TextToSpeech.LANG_MISSING_DATA ||
+                     result == TextToSpeech.LANG_NOT_SUPPORTED
+                 ) {
+                     Log.e("TTS", "Language is not present")
+                 } else {
+                     ttsButton.isEnabled = true
+                 }
+             } else {
+                 Log.e("TTS", "TTS Failed")
+             }
+         }
 
-         ttsButton.setOnClickListener{
+        ttsButton.setOnClickListener{
              tts.speak(
                  ttsText.text.toString(),
                  TextToSpeech.QUEUE_FLUSH,
@@ -110,8 +104,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         // WebView
-        val submitButton = submitButton
-
         submitButton.setOnClickListener {
             val websiteName = websiteName.text.toString()
 
@@ -119,6 +111,43 @@ class MainActivity : AppCompatActivity() {
                 it.putExtra("websiteName", websiteName)
                 startActivity(it)
             }
+        }
+
+        // Spinner
+        val personNames = arrayOf<String?>("john","james","robert","rose","jack","musk")
+
+        if (spinner!= null)
+        {
+            val arrayAdapter: ArrayAdapter<*> = ArrayAdapter<Any?>(this,android.R.layout.simple_spinner_item, personNames)
+            spinner.adapter=arrayAdapter
+            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Selected item " +""+ personNames[position],
+                        Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+            }
+        }
+
+        // Toggle Button
+        toggleButton.setOnCheckedChangeListener{
+                _, isChecked ->
+            val msg = "Toggle Button is: " + if (isChecked) "On" else "Off"
+            Toast.makeText(
+                this,
+                msg,
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
