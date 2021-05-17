@@ -11,10 +11,12 @@ import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.alert.*
 import kotlinx.android.synthetic.main.button_toast.*
 import kotlinx.android.synthetic.main.listview.*
+import kotlinx.android.synthetic.main.radio_button.*
 import kotlinx.android.synthetic.main.spinner.*
 import kotlinx.android.synthetic.main.toggle_button.*
 import kotlinx.android.synthetic.main.tts_layout.*
 import kotlinx.android.synthetic.main.webview.*
+import kotlinx.android.synthetic.main.webview.submitButton
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.webview)
         setContentView(R.layout.toggle_button)
         setContentView(R.layout.spinner)
+        setContentView(R.layout.radio_button)
 
         // Short and Long Toast
         val button = toast_button
@@ -148,6 +151,25 @@ class MainActivity : AppCompatActivity() {
                 msg,
                 Toast.LENGTH_SHORT
             ).show()
+        }
+
+        // Radio Button
+        submitButton.setOnClickListener {
+            val name = editName.text.toString()
+            val selected = radioGroup.checkedRadioButtonId
+            var radioButton : RadioButton = findViewById(selected)
+            if(radioButton.text == "Male")
+                Toast.makeText(
+                    this,
+                    "Mr ${name}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            else
+                Toast.makeText(
+                    this,
+                    "Ms ${name}",
+                    Toast.LENGTH_SHORT
+                ).show()
         }
 
     }
