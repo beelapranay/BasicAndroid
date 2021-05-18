@@ -7,4 +7,14 @@
     <string name="tts_hint">Enter Text</string>
 
     <string name="alert_button_text">Show Alert</string>
+
+    <string name="filename_textview">File Name</string>
+    <string name="filename_hint">Enter file name…</string>
+    <string name="file_data_textview">File Data</string>
+    <string name="file_data_hint">Enter file data…</string>
+    <string name="save_button">Save</string>
+    <string name="view_button">View</string>
+
+    <string name="implicit_intent_button_text">Share</string>
+    <string name="implicit_intent_hint">Want to share something?</string>
 </resources>

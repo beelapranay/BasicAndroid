@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/fileNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="117dp"
+        android:text="@string/filename_textview"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+    <EditText
+        android:id="@+id/fileNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/fileNameTextView"
+        android:layout_alignBottom="@+id/fileNameTextView"
+        android:layout_alignStart="@+id/saveButton"
+        android:layout_marginStart="31dp"
+        android:ems="10"
+        android:paddingStart="10dp"
+        android:inputType="textPersonName"
+        android:hint="@string/filename_hint"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/fileDataTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/fileNameTextView"
+        android:layout_below="@+id/fileNameTextView"
+        android:layout_marginTop="67dp"
+        android:text="@string/file_data_textview"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+    <EditText
+        android:id="@+id/fileDataEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/fileDataTextView"
+        android:layout_alignBottom="@+id/fileDataTextView"
+        android:layout_alignStart="@+id/fileNameEditText"
+        android:ems="10"
+        android:lines="5"
+        android:hint="@string/file_data_hint" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/fileDataTextView"
+        android:layout_marginBottom="53dp"
+        android:layout_marginStart="49dp"
+        android:text="@string/save_button" />
+
+    <Button
+        android:id="@+id/viewButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/fileDataEditText"
+        android:layout_alignTop="@+id/saveButton"
+        android:layout_marginEnd="33dp"
+        android:text="@string/view_button" />
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.sampath.basicandroid
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.alert.*
 import kotlinx.android.synthetic.main.button_toast.*
+import kotlinx.android.synthetic.main.implicit_intent.*
 import kotlinx.android.synthetic.main.listview.*
 import kotlinx.android.synthetic.main.radio_button.*
 import kotlinx.android.synthetic.main.spinner.*
@@ -17,6 +19,8 @@ import kotlinx.android.synthetic.main.toggle_button.*
 import kotlinx.android.synthetic.main.tts_layout.*
 import kotlinx.android.synthetic.main.webview.*
 import kotlinx.android.synthetic.main.webview.submitButton
+import kotlinx.android.synthetic.main.write_read.*
+import java.io.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -86,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 R.layout.listview_item, array)
 
             val listView: ListView = listview
-            listView.setAdapter(adapter)
+            listView.adapter = adapter
 
         // Alert
         btnShowAlert.setOnClickListener{
@@ -161,15 +165,68 @@ class MainActivity : AppCompatActivity() {
             if(radioButton.text == "Male")
                 Toast.makeText(
                     this,
-                    "Mr ${name}",
+                    "Mr $name",
                     Toast.LENGTH_SHORT
                 ).show()
             else
                 Toast.makeText(
                     this,
-                    "Ms ${name}",
+                    "Ms $name",
                     Toast.LENGTH_SHORT
                 ).show()
+        }
+
+        // Write, Read
+        saveButton.setOnClickListener(View.OnClickListener {
+            val file:String = fileNameEditText.text.toString()
+            val data:String = fileDataTextView.text.toString()
+            val fileOutputStream : FileOutputStream
+            try {
+                fileOutputStream = openFileOutput(file, Context.MODE_PRIVATE)
+                fileOutputStream.write(data.toByteArray())
+            } catch (e: FileNotFoundException){
+                e.printStackTrace()
+            }catch (e: NumberFormatException){
+                e.printStackTrace()
+            }catch (e: IOException){
+                e.printStackTrace()
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
+            Toast.makeText(applicationContext,"Your data has been saved!",Toast.LENGTH_LONG).show()
+            fileNameEditText.text.clear()
+            fileDataEditText.text.clear()
+        })
+
+        viewButton.setOnClickListener(View.OnClickListener {
+            val filename = fileNameEditText.text.toString()
+            if(filename.trim()!=""){
+                var fileInputStream: FileInputStream? = null
+                fileInputStream = openFileInput(filename)
+                var inputStreamReader = InputStreamReader(fileInputStream)
+                val bufferedReader = BufferedReader(inputStreamReader)
+                val stringBuilder: StringBuilder = StringBuilder()
+                var text: String? = null
+                while (run {
+                        text = bufferedReader.readLine()
+                        text
+                    } != null) {
+                    stringBuilder.append(text)
+                }
+                fileDataTextView.setText(stringBuilder.toString()).toString()
+            }else{
+                Toast.makeText(applicationContext,"File name cannot be empty!",Toast.LENGTH_LONG).show()
+            }
+        })
+
+        // Implicit Intent
+        shareButton.setOnClickListener{
+            val msg:String = implicitEditText.text.toString()
+            val intent= Intent()
+            intent.action=Intent.ACTION_SEND
+            intent.putExtra(Intent.EXTRA_TEXT,msg)
+            intent.type="text/plain"
+            startActivity(Intent.createChooser(intent,"Share via"))
         }
 
     }
