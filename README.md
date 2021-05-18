@@ -14,3 +14,5 @@ on the **Play Button** that can be found on your code editor.
 6. Spinner `(spinner.xml & MainActivity.kt)`
 7. Toggle Button `(toggle_button.xml & MainActivity.kt)`
 8. Radio Button `(radio_button.xml & MainActivity.kt)`
+9. Read & Write `(write_read.xml & MainActivity.kt)`
+10. Implicit Intent `(implicit_intent.xml & MainActivity.kt)`
