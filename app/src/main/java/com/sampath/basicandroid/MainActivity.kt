@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.toggle_button)
         setContentView(R.layout.spinner)
         setContentView(R.layout.radio_button)
+        setContentView(R.layout.write_read)
+        setContentView(R.layout.implicit_intent)
 
         // Short and Long Toast
         val button = toast_button
